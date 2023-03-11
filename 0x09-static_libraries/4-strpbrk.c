@@ -1,26 +1,25 @@
 #include "main.h"
+#include <unistd.h>
 /**
- * _strpbrk - Entry point
- * @s: input
- * @accept: input
- * Return: Always 0 (Success)
+ * *_strpbrk - returns the occurence of a substring of char in string of char
+ * @s: the string of chars
+ * @accept: the substring of chars
+ * Return: a pointer to the bytes found or NULL if nothing matches
  */
 char *_strpbrk(char *s, char *accept)
 {
-	int k;
+	char *p;
+	char *a;
 
-
-	while (*s)
+	for (p = s; *p != '\0'; p++)
 	{
-		for (k = 0; accept[k]; k++)
+		for (a = accept; *a != '\0'; a++)
 		{
-		if (*s == accept[k])
-		return (s);
+			if (*p == *a)
+			{
+				return (p);
+			}
 		}
-	s++;
 	}
-
-
-return ('\0');
+	return (NULL);
 }
-

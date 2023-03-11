@@ -1,30 +1,32 @@
+#include <unistd.h>
 #include "main.h"
 /**
- * _strstr - Entry point
- * @haystack: input
- * @needle: input
- * Return: Always 0 (Success)
+ * char *_strstr - returns the first occurence of the substring in the string
+ * the terminating null bytes are not compared
+ * @needle: the string we're looking for
+ * @haystack: the string we're searching in
+ *
+ * Return: pointer to string needle.
  */
 char *_strstr(char *haystack, char *needle)
 {
-	for (; *haystack != '\0'; haystack++)
+	char *p;
+	char *q;
+
+	while (*haystack != '\0')
 	{
-		char *l = haystack;
-		char *p = needle;
-
-
-		while (*l == *p && *p != '\0')
+		p = haystack;
+		q = needle;
+		while (*q != '\0' && *p == *q)
 		{
-			l++;
 			p++;
+			q++;
 		}
-
-
-		if (*p == '\0')
+		if (*q == '\0')
+		{
 			return (haystack);
+		}
+		haystack++;
 	}
-
-
-	return (0);
+	return (NULL);
 }
-
